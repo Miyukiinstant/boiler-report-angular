@@ -1,7 +1,4 @@
-<mat-card-content>
-    <button type="button" mat-raised-button>Reload</button>
-</mat-card-content>
-<table mat-table [dataSource]="table">
+<table mat-table [dataSource]="TableComponent">
     <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef>Motivo</th>
         <td mat-cell *matCellDef="let element" [textContent]="element.title"></td>
@@ -9,6 +6,15 @@
     <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Data</th>
         <td mat-cell *matCellDef="let element" [textContent]="element.date"></td>
+    </ng-container>
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <form enctype="multipart/form-data" #delForm="ngForm" (ngSubmit)="deleteRow(delForm)">
+                <input type="number" [ngModel]="element.id" name="id" hidden>
+                <button type="submit" mat-raised-button>Delete</button>
+            </form>
+        </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

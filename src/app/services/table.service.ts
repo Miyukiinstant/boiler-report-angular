@@ -13,10 +13,13 @@ export class TableService {
 
   constructor(private http:HttpClient) { }
 
-  getTable(): Observable<Report>{
-    return this.http.get<Report>(new Urls().urls.get)
+  getTable(): Observable<Report[]>{
+    return this.http.get<Report[]>(new Urls().urls.get)
   }
   postTable(form:NgForm): Observable<Post>{
     return this.http.post<Post>(new Urls().urls.post,form.value)
+  }
+  updateTable(form:NgForm): Observable<Post>{
+    return this.http.post<Post>(new Urls().urls.update,form.value)
   }
 }

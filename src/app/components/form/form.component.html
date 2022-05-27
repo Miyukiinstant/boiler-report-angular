@@ -1,7 +1,4 @@
 <mat-card>
-    <mat-card-content>
-        
-    </mat-card-content>
     <mat-card-content style="text-align: center;">
         <form enctype="multipart/form-data" #justBut="ngForm" (ngSubmit)="submitReport(justBut)">
             <input ngModel="true" name="report" hidden>
@@ -10,7 +7,7 @@
     </mat-card-content>
     <mat-card>
         <mat-card-content>
-            <app-table [table]="tableChild"></app-table>
+            <app-table [TableComponent]="tableChild"></app-table>
         </mat-card-content>
     </mat-card>
 </mat-card>

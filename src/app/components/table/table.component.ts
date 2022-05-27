@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Report } from 'src/app/interfaces/report';
 import { TableService } from 'src/app/services/table.service';
 
 @Component({
@@ -9,12 +11,23 @@ import { TableService } from 'src/app/services/table.service';
 export class TableComponent implements OnInit {
 
   constructor(private tables:TableService) { }
-  @Input() table:any
-  displayedColumns: string[] = ['title', 'date']
+  @Input() TableComponent:Report[] = []
   
+  displayedColumns: string[] = ['title', 'date', 'id']
+  
+  deleteRow(form:NgForm):void{
+    this.tables.updateTable(form).subscribe(result=>{
+      this.tables.getTable().subscribe(table=>{
+        this.TableComponent = table
+      })
+    })
+    
+  }
+
   ngOnInit(): void {
-    this.tables.getTable().subscribe(table=>{
-      this.table = table
+    this.TableComponent = []
+    this.tables.getTable().subscribe(_table=>{
+      this.TableComponent = _table
     })
   }
 
